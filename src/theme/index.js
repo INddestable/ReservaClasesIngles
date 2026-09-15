@@ -5,6 +5,7 @@ export const colors = {
   superficie: "#FFFFFF",
   primario: "#4F46E5",
   primarioOscuro: "#3730A3",
+  tarjetas:"#b2a6eb67",
   primarioSuave: "#EEF0FF",
   acento: "#F59E0B",
   acentoSuave: "#FEF3C7",

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Pressable, StyleSheet, Image } from "react-native";
+import { View, Text, Pressable, StyleSheet, Image, ScrollView } from "react-native";
 import LabelLevel from "./LabelLevel";
 import { colors, radius, spacing, typography } from "../theme";
 import useResponsive from "../hooks/useResponsive";
@@ -8,62 +8,93 @@ import { formatearPrecio } from "../data/classes";
 export default function Card({ clase, onPress }) {
   const { paddingHorizantal, esTablet } = useResponsive();
   return (
-    <View style={{borderRadius: 10,paddingVertical: 8,
-          paddingHorizontal: 15,}}>
-      <Pressable onPress={onPress} style={{borderRadius: 10}}>
-        <Image source={{ uri: clase.imagen }} />
-        <View>
-          <LabelLevel nivel={clase.nivel} />
-        </View>
-        {/*nombre profesor
-      -- horario
-      -- precio*/}
+    <View style={estilos.tarjeta}>
+      <Pressable onPress={onPress} style={{ overflow: "hidden" }}>
+        <LabelLevel nivel={clase.nivel} />
         <Image
           source={{ uri: clase.imagen }}
           resizeMethod="cover"
-          style={[estilos.portada, { height: esTablet ? 300 : 220 }]}
+          style={[
+            estilos.portada,
+            { height: esTablet ? 300 : 220, width: "auto" },
+          ]}
         />
-        <Text style={estilos.dato}>Profesor: {clase.profesor.nombre}</Text>
-        <Text style={estilos.dato}>Horario: {clase.horarios.join("\n")}</Text>
-        <Text style={estilos.precio}>Precio: {formatearPrecio(clase.precio)}</Text>
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            alignItems: "center",
+            justifyContent:"space-between"
+          }}
+          style={{
+            flexGrow: 1,
+          }}
+          horizontal
+          scrollEnabled={false}
+        >
+          <Text style={[estilos.profesor, estilos.margin]}>{clase.titulo}</Text>
+          <Text style={[estilos.horario, estilos.margin]}>Cupos: {clase.cupos}</Text>
+        </ScrollView>
+        <Text style={[estilos.profesor, estilos.margin]}>
+          Profesor: {clase.profesor.nombre}
+        </Text>
+        <Text style={[estilos.horario, estilos.margin]}>
+          Horario: {clase.horarios.join(" - ")}
+        </Text>
+        <Text style={[estilos.precio, estilos.margin]}>
+          Precio: {formatearPrecio(clase.precio)}
+        </Text>
       </Pressable>
       <Pressable
         style={({ pressed }) => ({
-          backgroundColor: pressed ? "#0369a1" : "#0ea5e9",
+          backgroundColor: pressed ? colors.primarioOscuro : colors.primario,
           paddingVertical: 12,
-          paddingHorizontal: 20,
-          borderRadius: 8,
           width: 200,
           justifyContent: "center",
+          alignSelf: "center",
           alignItems: "center",
           borderRadius: 25,
+          marginVertical: 5,
         })}
       >
-        <Text>Reservar clase</Text>
+        <Text style={estilos.textoBoton}>Reservar clase</Text>
       </Pressable>
     </View>
   );
 }
 
 const estilos = StyleSheet.create({
-  pantalla: { flex: 1, backgroundColor: colors.fondo },
-  portada: { width: "100%", backgroundColor: colors.primarioSuave },
-  datos: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    backgroundColor: colors.superficie,
-    borderRadius: radius.lg,
-    paddingVertical: spacing.lg,
+  margin: {
+    marginHorizontal: 5,
   },
-  dato: { alignItems: "center", gap: 2 },
-  datoValor: { fontSize: 16, fontWeight: "800", color: colors.texto },
-  precio: { fontSize: 18, fontWeight: "800", color: colors.primario },
+  tarjeta: {
+    marginHorizontal: 15,
+    marginVertical: 10,
+    backgroundColor: colors.tarjetas,
+    borderRadius: 16,
+    overflow: "hidden",
+  },
+  portada: {
+    width: "100%",
+    height: 180,
+  },
   profesor: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing.md,
-    backgroundColor: colors.superficie,
-    borderRadius: radius.lg,
-    padding: spacing.lg,
+    fontSize: 18,
+    fontWeight: "700",
+    color: colors.texto,
+  },
+  horario: {
+    fontSize: 14,
+    lineHeight: 22,
+    color: colors.textoSuave,
+  },
+  precio: {
+    fontSize: 18,
+    fontWeight: "800",
+    color: colors.primario,
+  },
+  textoBoton: {
+    color: colors.primarioSuave,
+    fontSize: 16,
+    fontWeight: "600",
   },
 });

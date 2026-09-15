@@ -37,7 +37,7 @@ export default function ClasesScreen({ navigation }) {
     return CLASES.filter((clase) => {
       const coincidenciaNivel = nivel === "Todos" || clase.nivel === nivel;
       const coincidenciaTexto =
-        textoBusqueda === "" ||
+        textoBusqueda == "" ||
         clase.titulo.toLocaleLowerCase().includes(textoBusqueda) ||
         clase.profesor.nombre.toLocaleLowerCase().includes(textoBusqueda);
       return coincidenciaNivel && coincidenciaTexto;
@@ -60,10 +60,10 @@ export default function ClasesScreen({ navigation }) {
           scrollEnabled={false}
         >
           <Ionicons name="search" size={18} color={colors.textoSuave} />
-          <TextInput style={{ flex: 1, minWidth: 0 }}
-            placeholder="Buscar por nivel"
-            value={nivel}
-            onChangeText={setNivel}
+          <TextInput style={{ flex: 1}}
+            placeholder={nivel}
+            value={busqueda}
+            onChangeText={setBusqueda}
             autoCorrect={false}
           />
         </ScrollView>

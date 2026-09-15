@@ -4,20 +4,21 @@ import { colors, spacing } from "../theme";
 
 export default function LabelLevel({ nivel }) {
   return (
-    <View style={[styles.container, { backgroundColor: colors.fondo }]}>
+    <View style={[styles.container, {marginVertical: 5,}]}>
       <Text style={styles.text}>{nivel}</Text>
     </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 3,
-    paddingHorizontal: spacing.md,
-    borderWidth: 1,
+    alignSelf: "flex-start",
+    borderRadius: 12,
+    paddingVertical: 5,
+    paddingHorizontal: 12,
   },
   text: {
-    fontSize: 11,
-    fontWeight: "700",
-    letterSpacing: 0.3,
+    color: colors.primario,
+    fontSize: 13,
+    fontWeight: "600",
   },
 });
