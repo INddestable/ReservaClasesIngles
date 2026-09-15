@@ -32,20 +32,18 @@ export default function DetalleClasesScreen({ route }) {
           horizontal
           scrollEnabled={false}
         >
-          <Text>{clase.profesor.nombre}</Text>
+          <Text style={estilos.profesor}>{clase.profesor.nombre}</Text>
           <Image
             source={{ uri: clase.profesor.foto }}
             resizeMethod="cover"
             style={[estilos.avatar]}
           />
         </ScrollView>
-        <Image
+        {/* <Image
           source={{ uri: clase.imagen }}
           resizeMethod="cover"
           style={[estilos.portada, { height: esTablet ? 300 : 220 }]}
-        />
-
-        <Text>1234</Text>
+        /> */}
       </ScrollView>
     </View>
   );

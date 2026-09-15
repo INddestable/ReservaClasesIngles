@@ -29,7 +29,7 @@ se instala la librería en este orden:
 export default function ClasesScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const { columnas, paddingHorizontal } = useResponsive();
-  const [nivel, setNivel] = useState();
+  const [nivel, setNivel] = useState("Todos");
   const [busqueda, setBusqueda] = useState("");
 
   const resultados = useMemo(() => {
@@ -48,13 +48,26 @@ export default function ClasesScreen({ navigation }) {
     <View style={[style.pantalla, { paddingTop: insets.top + spacing.md }]}>
       <View>
         <Text>Aplicación para clase de Inglés</Text>
-        <Ionicons name="search" size={18} color={colors.textoSuave} />
-        <TextInput
-          placeholder="Buscar por nivel"
-          value={nivel}
-          onChangeText={setNivel}
-          autoCorrect={false}
-        />
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            alignItems: "center",
+          }}
+          style={{
+            flexGrow: 1,
+          }}
+          horizontal
+          scrollEnabled={false}
+        >
+          <Ionicons name="search" size={18} color={colors.textoSuave} />
+          <TextInput style={{ flex: 1, minWidth: 0 }}
+            placeholder="Buscar por nivel"
+            value={nivel}
+            onChangeText={setNivel}
+            autoCorrect={false}
+          />
+        </ScrollView>
+
         {busqueda.length > 0 && (
           <Ionicons
             name="close-circle"
@@ -64,7 +77,11 @@ export default function ClasesScreen({ navigation }) {
           />
         )}
       </View>
-      <ScrollView style={{ flexGrow: 0 }} horizontal>
+      <ScrollView
+        style={{ flexGrow: 0, flexShrink: 0 }}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      >
         {NIVELES.map((item) => (
           <NivelChip
             key={item}
