@@ -17,7 +17,6 @@ export default function Card({ clase, onPress }) {
   return (
     <View style={estilos.tarjeta}>
       <Pressable onPress={onPress} style={{ overflow: "hidden" }}>
-        
         <Image
           source={{ uri: clase.imagen }}
           resizeMethod="cover"
@@ -25,15 +24,17 @@ export default function Card({ clase, onPress }) {
             estilos.portada,
             { height: esTablet ? 300 : 220, width: "auto" },
           ]}
-        /><ScrollView
+        />
+        <ScrollView
           contentContainerStyle={estilos.contenidoScroll}
           style={estilos.scroll}
           horizontal
           scrollEnabled={false}
         >
-        <LabelLevel nivel={clase.nivel} />
-        <Text style={[estilos.horario, estilos.margin]}>
-            Cupos: {clase.cupos}
+          <LabelLevel nivel={clase.nivel} />
+
+          <Text style={[estilos.horario, estilos.margin]}>
+            Modalidad: {clase.modalidad}
           </Text>
         </ScrollView>
         <ScrollView
@@ -47,18 +48,26 @@ export default function Card({ clase, onPress }) {
         >
           <Text style={[estilos.profesor, estilos.margin]}>{clase.titulo}</Text>
           <Text style={[estilos.horario, estilos.margin]}>
-           {clase.duracion} minutos
+            {clase.duracion} minutos
           </Text>
-          </ScrollView>
-          
-        <Text style={[estilos.profesor, estilos.margin]}>
-          Profesor: {clase.profesor.nombre}
-        </Text>
-        
+        </ScrollView>
+        <ScrollView
+          contentContainerStyle={estilos.contenidoScroll}
+          style={estilos.scroll}
+          horizontal
+          scrollEnabled={false}
+        >
+          <Text style={[estilos.profesor, estilos.margin]}>
+            Profesor(a): {clase.profesor.nombre}
+          </Text>
           <Text style={[estilos.horario, estilos.margin]}>
-            {clase.horarios.join(" - ")}
+            Cupos: {clase.cupos}
           </Text>
-          
+        </ScrollView>
+        <Text style={[estilos.horario, estilos.margin]}>
+          {clase.horarios.join(" - ")}
+        </Text>
+
         <Text style={[estilos.precio, estilos.margin]}>
           Precio: {formatearPrecio(clase.precio)}
         </Text>

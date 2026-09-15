@@ -17,7 +17,7 @@ export default function DetalleClasesScreen({ route }) {
   return (
     <View>
       <ScrollView
-        contenteContainerStyle={{ paddingBottom: 120 }}
+        contenteContainerStyle={{ paddingBottom: 10 }}
         showVerticalScrollIndicator={false}
       >
         <ScrollView

@@ -45,38 +45,27 @@ export default function ClasesScreen({ navigation }) {
   }, [nivel, busqueda]);
 
   return (
-    <View style={[style.pantalla, { paddingTop: insets.top + spacing.md }]}>
-      <View>
-        <Text>Aplicación para clase de Inglés</Text>
-        <ScrollView
-          contentContainerStyle={{
-            flexGrow: 1,
-            alignItems: "center",
-          }}
-          style={{
-            flexGrow: 1,
-          }}
-          horizontal
-          scrollEnabled={false}
-        >
-          <Ionicons name="search" size={18} color={colors.textoSuave} />
-          <TextInput style={{ flex: 1}}
-            placeholder={nivel}
-            value={busqueda}
-            onChangeText={setBusqueda}
-            autoCorrect={false}
-          />
-        </ScrollView>
-
-        {busqueda.length > 0 && (
-          <Ionicons
-            name="close-circle"
-            size={18}
-            color={colors.textoSuave}
-            onPress={() => setBusqueda("")}
-          />
-        )}
+    <View style={[style.pantalla, { paddingTop: spacing.md }]}>
+      <Text>Aplicación para clase de Inglés</Text>
+      <View style={style.buscador}>
+        <Ionicons name="search" size={18} color={colors.textoSuave} />
+        <TextInput
+          style={{ flex: 1 }}
+          placeholder={nivel}
+          value={busqueda}
+          onChangeText={setBusqueda}
+          autoCorrect={false}
+        />
       </View>
+
+      {busqueda.length > 0 && (
+        <Ionicons
+          name="close-circle"
+          size={18}
+          color={colors.textoSuave}
+          onPress={() => setBusqueda("")}
+        />
+      )}
       <ScrollView
         style={{ flexGrow: 0, flexShrink: 0 }}
         horizontal
@@ -85,8 +74,8 @@ export default function ClasesScreen({ navigation }) {
         {NIVELES.map((item) => (
           <NivelChip
             key={item}
-            etiqueta={item}
-            activo={item}
+            etiqueta={item} // Esta linea da el nombre
+            activo={nivel === item} // Para que un solo item quede activo
             onPress={() => setNivel(item)}
           />
         ))}
@@ -121,7 +110,6 @@ export default function ClasesScreen({ navigation }) {
           />
         }
       />
-      {/* Agregar la opción */}
     </View>
   );
 }
