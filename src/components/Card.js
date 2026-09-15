@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, Pressable, StyleSheet, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  Image,
+  ScrollView,
+} from "react-native";
 import LabelLevel from "./LabelLevel";
 import { colors, radius, spacing, typography } from "../theme";
 import useResponsive from "../hooks/useResponsive";
@@ -10,7 +17,7 @@ export default function Card({ clase, onPress }) {
   return (
     <View style={estilos.tarjeta}>
       <Pressable onPress={onPress} style={{ overflow: "hidden" }}>
-        <LabelLevel nivel={clase.nivel} />
+        
         <Image
           source={{ uri: clase.imagen }}
           resizeMethod="cover"
@@ -18,28 +25,40 @@ export default function Card({ clase, onPress }) {
             estilos.portada,
             { height: esTablet ? 300 : 220, width: "auto" },
           ]}
-        />
+        /><ScrollView
+          contentContainerStyle={estilos.contenidoScroll}
+          style={estilos.scroll}
+          horizontal
+          scrollEnabled={false}
+        >
+        <LabelLevel nivel={clase.nivel} />
+        <Text style={[estilos.horario, estilos.margin]}>
+            Cupos: {clase.cupos}
+          </Text>
+        </ScrollView>
         <ScrollView
-          contentContainerStyle={{
-            flexGrow: 1,
-            alignItems: "center",
-            justifyContent:"space-between"
-          }}
-          style={{
-            flexGrow: 1,
-          }}
+          contentContainerStyle={[
+            { justifyContent: "flex-start", display: "flex" },
+            estilos.contenidoScroll,
+          ]}
+          style={estilos.scroll}
           horizontal
           scrollEnabled={false}
         >
           <Text style={[estilos.profesor, estilos.margin]}>{clase.titulo}</Text>
-          <Text style={[estilos.horario, estilos.margin]}>Cupos: {clase.cupos}</Text>
-        </ScrollView>
+          <Text style={[estilos.horario, estilos.margin]}>
+           {clase.duracion} minutos
+          </Text>
+          </ScrollView>
+          
         <Text style={[estilos.profesor, estilos.margin]}>
           Profesor: {clase.profesor.nombre}
         </Text>
-        <Text style={[estilos.horario, estilos.margin]}>
-          Horario: {clase.horarios.join(" - ")}
-        </Text>
+        
+          <Text style={[estilos.horario, estilos.margin]}>
+            {clase.horarios.join(" - ")}
+          </Text>
+          
         <Text style={[estilos.precio, estilos.margin]}>
           Precio: {formatearPrecio(clase.precio)}
         </Text>
@@ -96,5 +115,13 @@ const estilos = StyleSheet.create({
     color: colors.primarioSuave,
     fontSize: 16,
     fontWeight: "600",
+  },
+  contenidoScroll: {
+    flexGrow: 1,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  scroll: {
+    flexGrow: 1,
   },
 });

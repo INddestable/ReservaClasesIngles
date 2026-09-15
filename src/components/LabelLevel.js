@@ -4,7 +4,7 @@ import { colors, spacing } from "../theme";
 
 export default function LabelLevel({ nivel }) {
   return (
-    <View style={[styles.container, {marginVertical: 5,}]}>
+    <View style={[styles.container]}>
       <Text style={styles.text}>{nivel}</Text>
     </View>
   );
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     borderRadius: 12,
     paddingVertical: 5,
-    paddingHorizontal: 12,
+    paddingHorizontal: 5,
   },
   text: {
     color: colors.primario,
