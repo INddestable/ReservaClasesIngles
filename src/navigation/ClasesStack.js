@@ -1,7 +1,7 @@
 import react from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ClasesScreen from "../screens/ClasesScreen";
-
+import DetalleClase from "../screens/DetalleClasesScreen";
 // para la navegación Stack, la constante debe ser Stack
 const Stack = createNativeStackNavigator();
 export default function ClasesStack() {
@@ -14,10 +14,10 @@ export default function ClasesStack() {
         // va en doble llave porque es un atributo
         option={{ headerShow: false }}
       />
-      <Stack.Screen 
-      name="DetalleCase" 
-      component={DetalleClasesScren}
-      options={{title: 'Detalle', headerBackTitle: 'Atrás'}}
+      <Stack.Screen
+        name="DetalleClase"
+        component={DetalleClase}
+        options={{ title: "Detalle", headerBackTitle: "Atrás" }}
       />
     </Stack.Navigator>
   );

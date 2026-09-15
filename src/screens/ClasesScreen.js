@@ -13,8 +13,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import LabelLevel from "../components/LabelLevel";
 import NivelChip from "../components/NivelChip";
+import EstadoVacio from "../components/EstadoVacio";
+import Card from "../components/Card";
 import useResponsive from "../hooks/useResponsive";
-import { Card } from "../components/Card";
 import { colors, radius, spacing, typography } from "../theme";
 import { formatearPrecio, CLASES, NIVELES } from "../data/classes";
 
@@ -27,7 +28,7 @@ se instala la librería en este orden:
 
 export default function ClasesScreen({ navigation }) {
   const insets = useSafeAreaInsets();
-  const {columnas, paddingHorizontal} = useResponsive()
+  const { columnas, paddingHorizontal } = useResponsive();
   const [nivel, setNivel] = useState();
   const [busqueda, setBusqueda] = useState("");
 
@@ -36,7 +37,7 @@ export default function ClasesScreen({ navigation }) {
     return CLASES.filter((clase) => {
       const coincidenciaNivel = nivel === "Todos" || clase.nivel === nivel;
       const coincidenciaTexto =
-        textoBusqueda ||
+        textoBusqueda === "" ||
         clase.titulo.toLocaleLowerCase().includes(textoBusqueda) ||
         clase.profesor.nombre.toLocaleLowerCase().includes(textoBusqueda);
       return coincidenciaNivel && coincidenciaTexto;
@@ -48,7 +49,6 @@ export default function ClasesScreen({ navigation }) {
       <View>
         <Text>Aplicación para clase de Inglés</Text>
         <Ionicons name="search" size={18} color={colors.textoSuave} />
-        {/*Poner color al textpo porque por defecto la caja (text input) y el texto son color blanco*/}
         <TextInput
           placeholder="Buscar por nivel"
           value={nivel}
@@ -78,18 +78,33 @@ export default function ClasesScreen({ navigation }) {
         data={resultados}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
-          <Card
-            clase={item}
-            onPress={() => navigation.navegate("DetalleClase", { clase: item })}
-            showVerticalScrollIndicator = {false}
-            contentContainerStyle={{
-              paddingHorizontal,
-              flexGrow: 1
-            }}
-          />;
+          return (
+            <Card
+              clase={item}
+              onPress={() =>
+                navigation.navigate("DetalleClase", { clase: item })
+              }
+              showVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                paddingHorizontal,
+                flexGrow: 1,
+              }}
+            />
+          );
         }}
+        numColumns={columnas}
+        ListEmptyComponent={
+          <EstadoVacio
+            icono="search-outline"
+            titulo="No encontramos resultados"
+            mensaje="La combinación de búsqueda no tiene resultados"
+            onAction={() => {
+              (setNivel("Todos"), setBusqueda(""));
+            }}
+          />
+        }
       />
-      //Agregar la opción
+      {/* Agregar la opción */}
     </View>
   );
 }

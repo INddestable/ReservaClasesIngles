@@ -17,6 +17,20 @@ export default function Card({ clase, onPress }) {
       <Text>Profesor: {clase.profesor.nombre}</Text>
       <Text>Horario: {clase.horarios.join("\n")}</Text>
       <Text>Precio: {formatearPrecio(clase.precio)}</Text>
+      <Pressable
+        style={({ pressed }) => ({
+          backgroundColor: pressed ? "#0369a1" : "#0ea5e9",
+          paddingVertical: 12,
+          paddingHorizontal: 20,
+          borderRadius: 8,
+          width: "auto",
+          justifyContent: "center", // Centra el texto dentro del botón
+          alignItems: "center",
+          borderRadius: 25,
+        })}
+      >
+        <Text>Reservar clase</Text>
+      </Pressable>
     </Pressable>
   );
 }
