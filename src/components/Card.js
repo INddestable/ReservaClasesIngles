@@ -39,7 +39,7 @@ export default function Card({ clase, onPress }) {
         </Text>
 
         <Text style={[estilos.precio, estilos.margin]}>
-          Precio: {formatearPrecio(clase.precio)}
+          {formatearPrecio(clase.precio)}
         </Text>
       </Pressable>
     </View>
@@ -76,6 +76,7 @@ const estilos = StyleSheet.create({
     fontSize: 18,
     fontWeight: "800",
     color: colors.primario,
+    marginBottom: 10,
   },
   textoBoton: {
     color: colors.primarioSuave,

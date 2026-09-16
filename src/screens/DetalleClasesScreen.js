@@ -1,16 +1,7 @@
-import React, { useState, useMemo } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Alert,
-  Image,
-  Pressable,
-} from "react-native";
+import  { useState } from "react";
+import {View, Text, StyleSheet, ScrollView, Alert, Image, Pressable} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
 import useResponsive from "../hooks/useResponsive";
 import { colors, spacing, radius, typography, sombra } from "../theme";
 import { formatearPrecio } from "../data/classes";
@@ -18,13 +9,12 @@ import LabelLevel from "../components/LabelLevel";
 
 export default function DetalleClasesScreen({ route }) {
   const insets = useSafeAreaInsets();
-  // otra manera de desestructurar objetos
-  const { clase } = route.params;
+  const { clase } = route.params;// otra manera de desestructurar objetos
   const { paddingHorizantal, esTablet } = useResponsive();
   const [cupos, setCupos] = useState(clase.cupos);
   const restarCupos = () => {
     if (cupos >= 1) {
-      setCupos((prevCupos) => prevCupos - 1);
+      setCupos((cupoRestante) => cupoRestante - 1);
       Alert.alert("Reservar Clases", `Has reservado ${clase.titulo}`);
     } else {
       Alert.alert(
@@ -165,6 +155,7 @@ const estilos = StyleSheet.create({
     color: colors.texto,
     marginTop: spacing.sm,
     marginBottom: spacing.lg,
+    marginHorizontal: 10,
   },
 
   datos: {
@@ -185,6 +176,7 @@ const estilos = StyleSheet.create({
     fontSize: 16,
     fontWeight: "800",
     color: colors.texto,
+    marginHorizontal: 10,
   },
 
   datoTexto: {
@@ -231,6 +223,7 @@ const estilos = StyleSheet.create({
     lineHeight: 22,
     marginTop: spacing.sm,
     marginBottom: spacing.lg,
+    marginHorizontal: 10,
   },
 
   horarios: {
@@ -251,6 +244,7 @@ const estilos = StyleSheet.create({
     borderRadius: radius.lg,
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.md,
+    marginHorizontal: 10,
   },
 
   horarioSeleccionado: {
@@ -290,6 +284,8 @@ const estilos = StyleSheet.create({
   precioLabel: {
     fontSize: 12,
     color: colors.textoSuave,
+    marginHorizontal: 10,
+    
   },
 
   textoBoton: {
@@ -302,5 +298,6 @@ const estilos = StyleSheet.create({
     fontSize: 18,
     fontWeight: "800",
     color: colors.primario,
+    marginHorizontal: 10,
   },
 });

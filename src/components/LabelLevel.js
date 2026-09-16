@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 5,
     paddingHorizontal: 6,
+    marginHorizontal: 18
   },
   text: {
     color: colors.primario,
