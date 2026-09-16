@@ -9,10 +9,11 @@ export default function ClasesStack() {
     <Stack.Navigator>
       <Stack.Screen
         //nombre que se le dará al componente
+        //qué pasa si por ejemplo quiero darle el nombre de cada curso de inglés?
         name="Home"
         component={ClasesScreen}
         // va en doble llave porque es un atributo
-        option={{ headerShow: false }}
+        options ={{ headerShown: true, title:"Clases de Inglés" }}
       />
       <Stack.Screen
         name="DetalleClase"

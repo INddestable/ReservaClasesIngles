@@ -46,7 +46,7 @@ export default function ClasesScreen({ navigation }) {
 
   return (
     <View style={[style.pantalla, { paddingTop: spacing.md }]}>
-      <Text>Aplicación para clase de Inglés</Text>
+      {/*<Text>Aplicación para clase de Inglés</Text>*/}
       <View style={style.buscador}>
         <Ionicons name="search" size={18} color={colors.textoSuave} />
         <TextInput

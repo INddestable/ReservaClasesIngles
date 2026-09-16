@@ -25,45 +25,15 @@ export default function Card({ clase, onPress }) {
             { height: esTablet ? 300 : 220, width: "auto" },
           ]}
         />
-        <ScrollView
-          contentContainerStyle={estilos.contenidoScroll}
-          style={estilos.scroll}
-          horizontal
-          scrollEnabled={false}
-        >
-          <LabelLevel nivel={clase.nivel} />
 
-          <Text style={[estilos.horario, estilos.margin]}>
-            Modalidad: {clase.modalidad}
-          </Text>
-        </ScrollView>
-        <ScrollView
-          contentContainerStyle={[
-            { justifyContent: "flex-start", display: "flex" },
-            estilos.contenidoScroll,
-          ]}
-          style={estilos.scroll}
-          horizontal
-          scrollEnabled={false}
-        >
-          <Text style={[estilos.profesor, estilos.margin]}>{clase.titulo}</Text>
-          <Text style={[estilos.horario, estilos.margin]}>
-            {clase.duracion} minutos
-          </Text>
-        </ScrollView>
-        <ScrollView
-          contentContainerStyle={estilos.contenidoScroll}
-          style={estilos.scroll}
-          horizontal
-          scrollEnabled={false}
-        >
-          <Text style={[estilos.profesor, estilos.margin]}>
-            Profesor(a): {clase.profesor.nombre}
-          </Text>
-          <Text style={[estilos.horario, estilos.margin]}>
-            Cupos: {clase.cupos}
-          </Text>
-        </ScrollView>
+        <LabelLevel nivel={clase.nivel} />
+
+        <Text style={[estilos.profesor, estilos.margin]}>{clase.titulo}</Text>
+
+        <Text style={[estilos.profesor, estilos.margin]}>
+          Profesor(a): {clase.profesor.nombre}
+        </Text>
+
         <Text style={[estilos.horario, estilos.margin]}>
           {clase.horarios.join(" - ")}
         </Text>
@@ -72,33 +42,20 @@ export default function Card({ clase, onPress }) {
           Precio: {formatearPrecio(clase.precio)}
         </Text>
       </Pressable>
-      <Pressable
-        style={({ pressed }) => ({
-          backgroundColor: pressed ? colors.primarioOscuro : colors.primario,
-          paddingVertical: 12,
-          width: 200,
-          justifyContent: "center",
-          alignSelf: "center",
-          alignItems: "center",
-          borderRadius: 25,
-          marginVertical: 5,
-        })}
-      >
-        <Text style={estilos.textoBoton}>Reservar clase</Text>
-      </Pressable>
     </View>
   );
 }
 
 const estilos = StyleSheet.create({
   margin: {
-    marginHorizontal: 5,
+    marginHorizontal: 25,
+    marginVertical:2
   },
   tarjeta: {
-    marginHorizontal: 15,
+    marginHorizontal: 10,
     marginVertical: 10,
     backgroundColor: colors.tarjetas,
-    borderRadius: 16,
+    borderRadius: 35,
     overflow: "hidden",
   },
   portada: {

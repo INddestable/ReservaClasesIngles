@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     borderRadius: 12,
     paddingVertical: 5,
-    paddingHorizontal: 5,
+    paddingHorizontal: 6,
   },
   text: {
     color: colors.primario,
