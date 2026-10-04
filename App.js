@@ -1,8 +1,8 @@
-import react from "react";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import ClasesStack from "./src/navigation/ClasesStack";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+
+import TabNavigator from "./src/navigation/TabNavigator";
 import { colors } from "./src/theme";
 
 const temaNavegacion = {
@@ -19,17 +19,10 @@ const temaNavegacion = {
 
 export default function App() {
   return (
-    /*<View style={styles.container}>
-      <Text>Kevin hiper-heterosensual!</Text>
-      {CLASES.map((elemento) => (
-        <Card key={elemento.id} clase={elemento} />
-      ))}
-      <StatusBar style="auto" />
-    </View>*/
     <SafeAreaProvider>
       <NavigationContainer theme={temaNavegacion}>
-        <StatusBar style="dark"></StatusBar>
-        <ClasesStack />
+        <StatusBar style="dark" />
+        <TabNavigator />
       </NavigationContainer>
     </SafeAreaProvider>
   );
