@@ -45,7 +45,7 @@ export default function ClasesScreen({ navigation }) {
   }, [nivel, busqueda]);
 
   return (
-    <View style={[style.pantalla, { paddingTop: spacing.md }]}>
+    <View style={[style.pantalla, { paddingTop: spacing.sm }]}>
       {/*<Text>Aplicación para clase de Inglés</Text>*/}
       <View style={style.buscador}>
         <Ionicons name="search" size={18} color={colors.textoSuave} />
@@ -124,7 +124,7 @@ const style = StyleSheet.create({
     borderRadius: radius.md,
     paddingHorizontal: spacing.lg,
     height: 46,
-    marginTop: spacing.lg,
+    margin: spacing.sm,
     borderWidth: 1,
     borderColor: colors.borde,
   },
