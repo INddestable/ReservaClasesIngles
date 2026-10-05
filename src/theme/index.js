@@ -3,16 +3,16 @@ import { Platform } from "react-native";
 export const colors = {
   fondo: "#F6F7FB",
   superficie: "#FFFFFF",
-  primario: "#318535",
-  primarioOscuro: "#246327",
-  tarjetas:"#6fdd6c27",
+  primario: "#4F46E5",
+  primarioOscuro: "#3730A3",
+  tarjetas:"#b2a6eb67",
   primarioSuave: "#EEF0FF",
   acento: "#F59E0B",
   acentoSuave: "#FEF3C7",
   exito: "#0E9F6E",
   peligro: "#E11D48",
   texto: "#111827",
-  textoSuave: "#806b6b",
+  textoSuave: "#6B7280",
   borde: "#E5E7EB",
 };
 
@@ -43,7 +43,7 @@ export const typography = {
 
 export const sombra = Platform.select({
   ios: {
-    shadowColor: "#102a0f",
+    shadowColor: "#0F172A",
     shadowOpacity: 0.08,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 4 },
@@ -55,7 +55,7 @@ export const coloresPorNivel = {
   Basico: colors.exito,
   Intermedio: colors.primario,
   Avanzado: colors.acento,
-  Conversacional: "#13b464",
+  Conversacional: "#7C3AED",
 };
 
 export default { colors, spacing, radius, typography, sombra, coloresPorNivel };

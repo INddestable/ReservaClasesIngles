@@ -13,9 +13,7 @@ export default function ClasesStack() {
         name="Home"
         component={ClasesScreen}
         // va en doble llave porque es un atributo
-        options ={{ headerTrue: false, title:"Clases de Inglés"
-
-        }}
+        options ={{ headerShown: true, title:"Clases de Inglés" }}
       />
       <Stack.Screen
         name="DetalleClase"
@@ -25,5 +23,3 @@ export default function ClasesStack() {
     </Stack.Navigator>
   );
 }
-
-//Nota, esto ahora solo hace bonito, lo dejamos de recuerdo UwU, no afecta funcionalidad
