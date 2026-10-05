@@ -12,6 +12,15 @@ export default function PerfilScreen() {
   );
 }
 
+/*
+Crear variable booleana que demuestre que el usuario si esta con la sesion iniciada 
+
+Crear campos de inicio de sesion
+Crear context donde se guardaria la informacion
+Se guarda en /data
+nombre, apellido, nivel de ingles, telefono, cedula-opcional
+*/
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
