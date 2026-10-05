@@ -33,7 +33,7 @@ export default function DetalleClasesScreen({ route }) {
         <Ionicons name="arrow-back" size={28} 
         style={{
           color: colors.exito,
-          borderWidth: 0,
+          borderWidth: 0, //DONT REMOVE - NO QUITAR (It looks like it's not doing anything, but it actually is doing something. PARECE QUE NO HACE NADA, PERO SI HACE ALGO)
           borderRadius: 100,
           width: 30,
         }}

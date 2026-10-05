@@ -43,10 +43,10 @@ export default function PerfilScreen() {
 /*
 Crear variable booleana que demuestre que el usuario si esta con la sesion iniciada LISTO
 
-Crear campos de inicio de sesion
+Crear campos de inicio de sesion LISTO (email, password)
 Crear context donde se guardaria la informacion
 Se guarda en /data
-nombre, apellido, nivel de ingles, telefono, cedula-opcional
+nombre, nivel de ingles, telefono, email, password
 */
 
 const styles = StyleSheet.create({

@@ -6,7 +6,7 @@ const LoginContext = createContext();
 // Creamos el proveedor
 export function LoginProvider({ children }) {
   //variable booleana global
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
 
   //función para alternar o cambiar el booleano
   const toggleLogin = () => setIsLogged((prev) => !prev);
