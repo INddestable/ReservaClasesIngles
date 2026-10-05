@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ClasesStack from "./ClasesStack";
 import ReservaScreen from "../screens/ReservaScreen";
 import PerfilScreen from "../screens/PerfilScreen";
+import ClasesScreen from "../screens/ClasesScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -11,9 +12,9 @@ export default function TabNavigator() {
     <Tab.Navigator>
       <Tab.Screen
         name="Inicio"
-        component={ClasesStack}
+        component={ClasesScreen}
         options={{
-          title: "Inicio",
+          title: "Clases disponibles",
         }}
       />
 
@@ -21,7 +22,7 @@ export default function TabNavigator() {
         name="Reservas"
         component={ReservaScreen}
         options={{
-          title: "Reservas",
+          title: "Mis Reservas",
         }}
       />
 
@@ -29,7 +30,7 @@ export default function TabNavigator() {
         name="Perfil"
         component={PerfilScreen}
         options={{
-          title: "Perfil",
+          title: "Mi Perfil",
         }}
       />
     </Tab.Navigator>
