@@ -4,6 +4,7 @@ import ClasesStack from "./ClasesStack";
 import ReservaScreen from "../screens/ReservaScreen";
 import PerfilScreen from "../screens/PerfilScreen";
 import ClasesScreen from "../screens/ClasesScreen";
+import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,6 +16,7 @@ export default function TabNavigator() {
         component={ClasesStack}
         options={{
           title: "Clases disponibles",
+          tabBarIcon: ({ color }) => <Ionicons size={28} name="home" color={color} />,
         }}
       />
 
@@ -23,6 +25,7 @@ export default function TabNavigator() {
         component={ReservaScreen}
         options={{
           title: "Mis Reservas",
+          tabBarIcon: ({ color }) => <Ionicons size={28} name="list-outline" color={color} />,
         }}
       />
 
@@ -31,6 +34,7 @@ export default function TabNavigator() {
         component={PerfilScreen}
         options={{
           title: "Mi Perfil",
+          tabBarIcon: ({ color }) => <Ionicons size={28} name="person-circle-outline" color={color} />,
         }}
       />
     </Tab.Navigator>
