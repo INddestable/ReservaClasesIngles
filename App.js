@@ -4,6 +4,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import TabNavigator from "./src/navigation/TabNavigator";
 import { colors } from "./src/theme";
+import { LoginProvider } from "./src/context/LoginContext";
 
 const temaNavegacion = {
   ...DefaultTheme,
@@ -19,11 +20,15 @@ const temaNavegacion = {
 
 export default function App() {
   return (
+    <LoginProvider>
     <SafeAreaProvider>
-      <NavigationContainer theme={temaNavegacion}>
-        <StatusBar style="dark" />
-        <TabNavigator />
-      </NavigationContainer>
+      
+        <NavigationContainer theme={temaNavegacion}>
+            <StatusBar style="dark" />
+            <TabNavigator />
+        </NavigationContainer>
     </SafeAreaProvider>
+  </LoginProvider>
+
   );
 }

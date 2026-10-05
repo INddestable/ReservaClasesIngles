@@ -1,5 +1,6 @@
 import  { useState } from "react";
 import {View, Text, StyleSheet, ScrollView, Alert, Image, Pressable} from "react-native";
+import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useResponsive from "../hooks/useResponsive";
@@ -8,6 +9,7 @@ import { formatearPrecio } from "../data/classes";
 import LabelLevel from "../components/LabelLevel";
 
 export default function DetalleClasesScreen({ route }) {
+  const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const { clase } = route.params;// otra manera de desestructurar objetos
   const { paddingHorizantal, esTablet } = useResponsive();
@@ -25,6 +27,18 @@ export default function DetalleClasesScreen({ route }) {
   };
   return (
     <View style={estilos.pantalla}>
+      <Pressable style={{
+        margin: 10,
+      }} onPress={() => navigation.goBack() }>
+        <Ionicons name="arrow-back" size={28} 
+        style={{
+          color: colors.exito,
+          borderWidth: 0,
+          borderRadius: 100,
+          width: 30,
+        }}
+        />
+      </Pressable>
       <ScrollView
         contentContainerStyle={{
           paddingBottom: 130 + insets.bottom,

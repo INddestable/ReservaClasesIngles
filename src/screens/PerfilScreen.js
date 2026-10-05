@@ -1,19 +1,47 @@
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState, useMemo, useEffect } from "react";
+import { View,  Text,  Pressable,  StyleSheet,  Image,  TextInput,  ScrollView,  FlatList} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
+import useResponsive from "../hooks/useResponsive";
+import { colors, radius, spacing, typography } from "../theme";
+import { LoginProvider } from "../context/LoginContext";
+import { useLogin } from '../context/LoginContext';
+import AuthCard from '../components/perfil/AuthCard';
+import UserProfile from '../components/perfil/UserProfile';
 
 export default function PerfilScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Mi Perfil</Text>
+  const { isLogged } = useLogin();
 
-      <Text style={styles.text}>
-        Aquí aparecerá la información del estudiante.
-      </Text>
-    </View>
+  return (
+    <>
+      {isLogged ? <UserProfile /> : <AuthCard />}
+    </>
   );
 }
 
 /*
-Crear variable booleana que demuestre que el usuario si esta con la sesion iniciada 
+export default function PerfilScreen() {
+  return (
+    <View >
+      <Text style={styles.text}>
+        Aquí aparecerá la información del estudiante.
+      </Text>
+            <View style={styles.buscador}>
+              <TextInput
+                style={{ flex: 1 }}
+                placeholder="Nombre"
+                //value={busqueda}
+                //onChangeText={setBusqueda}
+                autoCorrect={false}
+              />
+            </View>
+    </View>
+  );
+}
+*/
+
+/*
+Crear variable booleana que demuestre que el usuario si esta con la sesion iniciada LISTO
 
 Crear campos de inicio de sesion
 Crear context donde se guardaria la informacion
@@ -32,10 +60,27 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
+
   },
 
   text: {
     fontSize: 16,
+    margin: spacing.lg,
+    marginBottom: spacing.xs
   },
+
+  buscador: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing.sm,
+    backgroundColor: colors.superficie,
+    borderRadius: radius.md,
+    paddingHorizontal: spacing.lg,
+    height: 46,
+    margin: spacing.sm,
+    borderWidth: 1,
+    borderColor: colors.borde,
+  },
+
+  input: { flex: 1, fontSize: 14, color: colors.texto, paddingVertical: 0 },
 });

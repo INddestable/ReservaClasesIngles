@@ -12,7 +12,7 @@ export default function TabNavigator() {
     <Tab.Navigator>
       <Tab.Screen
         name="Inicio"
-        component={ClasesScreen}
+        component={ClasesStack}
         options={{
           title: "Clases disponibles",
         }}
