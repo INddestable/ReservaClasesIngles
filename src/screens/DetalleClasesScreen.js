@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState, useContext } from "react";
 import {View, Text, StyleSheet, ScrollView, Alert, Image, Pressable} from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from "@expo/vector-icons";
@@ -7,6 +7,8 @@ import useResponsive from "../hooks/useResponsive";
 import { colors, spacing, radius, typography, sombra } from "../theme";
 import { formatearPrecio } from "../data/classes";
 import LabelLevel from "../components/LabelLevel";
+import { useLogin } from "../context/LoginContext";
+import { ReservaContext } from "../context/ReservasContext";
 
 export default function DetalleClasesScreen({ route }) {
   const navigation = useNavigation();
@@ -15,16 +17,50 @@ export default function DetalleClasesScreen({ route }) {
   const { paddingHorizantal, esTablet } = useResponsive();
   const [cupos, setCupos] = useState(clase.cupos);
   const [horarioElegido, setHorarioElegido] = useState(null);
+  const { isLogged } = useLogin();
+  const { agregarReserva } = useContext(ReservaContext);
   const restarCupos = () => {
-    if (cupos >= 1) {
-      setCupos((cupoRestante) => cupoRestante - 1);
-      Alert.alert("Reservar Clases", `Has reservado ${clase.titulo}`);
-    } else {
+    // 1. Para reservar es obligatorio haber iniciado sesión
+    if (!isLogged) {
+      Alert.alert(
+        "Reservar Clases",
+        "Debes iniciar sesión para reservar una clase.",
+        [
+          { text: "Cancelar", style: "cancel" },
+          { text: "Ir a Perfil", onPress: () => navigation.navigate("Perfil") },
+        ],
+      );
+      return;
+    }
+
+    // 2. Hay que elegir un horario
+    if (!horarioElegido) {
+      Alert.alert("Reservar Clases", "Elige un horario antes de reservar.");
+      return;
+    }
+
+    // 3. Debe haber cupos
+    if (cupos < 1) {
       Alert.alert(
         "Reservar Clases",
         `La clase ${clase.titulo} no cuenta con más cupos`,
       );
+      return;
     }
+
+    // 4. Guardar la reserva (devuelve ok:false si ya existe)
+    const { ok } = agregarReserva(clase, horarioElegido);
+
+    if (!ok) {
+      Alert.alert("Reservar Clases", "Ya reservaste esta clase en ese horario.");
+      return;
+    }
+
+    setCupos((cupoRestante) => cupoRestante - 1);
+    Alert.alert(
+      "Reservar Clases",
+      `Has reservado ${clase.titulo} - ${horarioElegido}`,
+    );
   };
   return (
     <View style={estilos.pantalla}>
