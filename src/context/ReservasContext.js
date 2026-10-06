@@ -44,18 +44,14 @@ const agregarReserva = useCallback((clase, horario) => {
         creadoEn: new Date().toISOString(),
     }
 
-    let resultado = {ok: true};
+    if (reservas.some((r) => r.id === nueva.id)) {
+      return { ok: false };
+    }
 
-    setReservas((previas) => {
-        if(previas.some((r) => r.id === nueva.id)){
-            let resultado = {ok: false};
-            return previas;
-        }
-        return [nueva, ...previas]
-    });//setReservas
+    setReservas((previas) => [nueva, ...previas]);
 
-    return resultado
-  },[]);
+    return { ok: true };
+  }, [reservas]);
 
 const valor = useMemo(
     () => ({cargando, agregarReserva, reservas}),
