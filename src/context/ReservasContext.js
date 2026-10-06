@@ -62,6 +62,9 @@ const valor = useMemo(
     [cargando, agregarReserva, reservas]
 )
 
-return
-<ReservaContext.Provider value={valor}> {children} </ReservaContext.Provider>
-} //Esta es la llave de cierre para la función useCallback
+  return (
+    <ReservaContext.Provider value={valor}>
+      {children}
+    </ReservaContext.Provider>
+  );
+} //Esta es la llave de cierre de ReservaProvider
