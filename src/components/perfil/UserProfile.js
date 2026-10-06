@@ -1,9 +1,16 @@
 import React from 'react'
 import { View, Button, Text,  Pressable,  StyleSheet,  Image,  TextInput,  ScrollView,  FlatList} from "react-native";
 import { colors, spacing, radius, typography, sombra } from "../../theme";
+import { useLogin } from "../../context/LoginContext"
 
 const UserProfile = () => {
-  return (
+    const { logout } = useLogin();
+  
+    const singout = () => {
+        logout()
+    }
+
+    return (
     <View style={{
             margin: "5%",
             width: '90%',
@@ -58,6 +65,26 @@ const UserProfile = () => {
                  <Text style={style.textoBoton}>
                     Actualizar informacion
                  </Text>
+                </Pressable>
+
+                                <Pressable
+                    onPress={() => {
+                        //Funcion para Registrarse
+                        singout()
+                  }}
+                style={({ pressed }) => ({
+                    backgroundColor: pressed ? colors.primarioOscuro : colors.primario,
+                    paddingVertical: 12,
+                    width: 200,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 25,
+                    marginVertical: 5,
+                  })}
+                >
+                 <Text style={style.textoBoton}>
+                    Cerrar sesion                 
+                </Text>
                 </Pressable>
     </View>
   )

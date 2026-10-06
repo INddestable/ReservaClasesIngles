@@ -23,14 +23,26 @@ function AuthCard() {
         estilos.portada
     }>
         
-        <Pressable onPress={() => setMode('register')}>
-            <Text>
+        <Pressable onPress={() => setMode('register')} style={estilos.botonArriba}>
+            <Text style={estilos.tituloSecundario}>
                 Registrarse
             </Text>
         </Pressable>
 
-        <Pressable onPress={() => setMode('login')}>
-            <Text>
+            <Text style={{
+              paddingVertical: 10,     
+              fontSize: 24,
+              fontWeight: "800",
+              color: colors.texto,
+              marginTop: spacing.sm,
+              marginBottom: spacing.lg,
+              marginHorizontal: 10
+              }}>
+                |
+            </Text>
+
+        <Pressable onPress={() => setMode('login')} style={estilos.botonArriba}>
+            <Text style={estilos.tituloSecundario}> 
              Iniciar sesión
             </Text>
         </Pressable>
@@ -56,7 +68,8 @@ const estilos = StyleSheet.create({
 
   portada: {
     width: "100%",
-    backgroundColor: colors.primarioSuave,
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
 
   titulo: {
@@ -68,104 +81,13 @@ const estilos = StyleSheet.create({
     marginHorizontal: 10,
   },
 
-  datos: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    backgroundColor: colors.superficie,
-    borderRadius: radius.lg,
-    paddingVertical: spacing.lg,
-    marginBottom: spacing.lg,
-  },
-
-  dato: {
-    alignItems: "center",
-    gap: 2,
-  },
-
-  datoValor: {
-    fontSize: 16,
-    fontWeight: "800",
+  tituloSecundario: {
+    fontSize: 18,
+    fontWeight: "500",
     color: colors.texto,
-    marginHorizontal: 10,
-  },
-
-  datoTexto: {
-    fontSize: 12,
-    color: colors.textoSuave,
-  },
-
-  profesor: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing.md,
-    backgroundColor: colors.superficie,
-    borderRadius: radius.lg,
-    padding: spacing.lg,
-    marginBottom: spacing.lg,
-  },
-
-  avatar: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: colors.borde,
-  },
-
-  profesorInfo: {
-    flex: 1,
-  },
-
-  profesorNombre: {
-    fontSize: 15,
-    fontWeight: "700",
-    color: colors.texto,
-  },
-
-  profesorDetalle: {
-    fontSize: 13,
-    color: colors.textoSuave,
-    marginTop: 2,
-  },
-
-  descripcion: {
-    ...typography.cuerpo,
-    color: colors.textoSuave,
-    lineHeight: 22,
     marginTop: spacing.sm,
     marginBottom: spacing.lg,
     marginHorizontal: 10,
-  },
-
-  horarios: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: spacing.sm,
-    marginTop: spacing.md,
-    marginBottom: spacing.lg,
-  },
-
-  horario: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing.sm,
-    backgroundColor: colors.superficie,
-    borderWidth: 1,
-    borderColor: colors.borde,
-    borderRadius: radius.lg,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.md,
-    marginHorizontal: 10,
-  },
-
-  horarioSeleccionado: {
-    backgroundColor: colors.primario,
-    borderColor: colors.primario,
-  },
-
-  horarioTexto: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: colors.texto,
   },
 
   horarioTextoSeleccionado: {
@@ -210,4 +132,12 @@ const estilos = StyleSheet.create({
     color: colors.primario,
     marginHorizontal: 10,
   },
+  botonArriba: {
+    paddingVertical: 10,
+    width: "40%",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 25,
+    marginVertical: 5,
+  }
 });

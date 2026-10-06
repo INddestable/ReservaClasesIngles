@@ -20,9 +20,8 @@ const temaNavegacion = {
 
 export default function App() {
   return (
-    <LoginProvider>
+  <LoginProvider>
     <SafeAreaProvider>
-      
         <NavigationContainer theme={temaNavegacion}>
             <StatusBar style="dark" />
             <TabNavigator />

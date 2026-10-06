@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text,  Pressable,  StyleSheet,  Image,  TextInput,  ScrollView,  FlatList} from "react-native";
 import { colors, spacing, radius, typography, sombra } from "../../theme";
 
 export const LoginForm = () => {
-  return (
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    
+    return (
     <View style={{
     }}>
         <Text style={style.titulo}>
