@@ -109,7 +109,9 @@ export const RegisterForm = () => {
                     justifyContent: "center",
                     alignItems: "center",
                     borderRadius: 25,
-                    marginVertical: 5,
+                    marginTop: 20,
+                    marginBottom: 5,
+                    marginLeft: "21%",
                   })}
                 >
                  <Text style={style.textoBoton}>
@@ -128,6 +130,7 @@ const style = StyleSheet.create({
         marginTop: spacing.sm,
         marginBottom: spacing.lg,
         marginHorizontal: 10,
+        marginLeft: "32%",
     },
     textoBoton: {
         color: colors.primarioSuave,

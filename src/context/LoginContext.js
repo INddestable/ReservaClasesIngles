@@ -22,14 +22,14 @@ export function LoginProvider({ children }) {
   }
 
     //Testeo, falta de confianza hacia react :3
-    /*
+    
     useEffect(() => {
       console.log("USER CAMBIÓ:", user);
     }, [user]);
     useEffect(() => {
       console.log("REGISTERED USER CAMBIÓ:", registeredUser);
     }, [registeredUser]);
-    */
+    
 
   //funcion para Loguearse
   const login = (email, password) => {
@@ -38,12 +38,17 @@ export function LoginProvider({ children }) {
       user.email === email &&
       user.password === password
     ) {
-      setUser(registeredUser);
+      //setUser(registeredUser);
       setIsLogged(true);
     }
     else (
       Alert.alert('Error',"Email o password incorrectos")
     )
+  };
+
+  const update = (userData) => {
+    setUser(userData);
+    setIsLogged(true);
   };
 
   //funcion cerrar sesion
@@ -56,7 +61,7 @@ export function LoginProvider({ children }) {
   const toggleLogin = () => setIsLogged((prev) => !prev);
 
   return (
-    <LoginContext.Provider value={{ register, isLogged, setIsLogged, toggleLogin, login, logout }}>
+    <LoginContext.Provider value={{ register, user, isLogged, setIsLogged, toggleLogin, update, login, logout }}>
       {children}
     </LoginContext.Provider>
   );
