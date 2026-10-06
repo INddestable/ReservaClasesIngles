@@ -1,6 +1,7 @@
 
 import { useContext } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Pressable, Alert } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { useLogin } from "../context/LoginContext";
 import { ReservaContext } from "../context/ReservasContext";
 import EstadoVacio from "../components/EstadoVacio";
@@ -9,7 +10,23 @@ import { formatearPrecio } from "../data/classes";
  
 export default function ReservaScreen() {
   const { isLogged } = useLogin();
-  const { reservas, cargando } = useContext(ReservaContext);
+  const { reservas, cargando, eliminarReserva } = useContext(ReservaContext);
+ 
+  // Pide confirmación antes de borrar la reserva
+  const confirmarEliminar = (reserva) => {
+    Alert.alert(
+      "Eliminar reserva",
+      `¿Quieres eliminar ${reserva.titulo} - ${reserva.horario}?`,
+      [
+        { text: "Cancelar", style: "cancel" },
+        {
+          text: "Eliminar",
+          style: "destructive",
+          onPress: () => eliminarReserva(reserva.id),
+        },
+      ],
+    );
+  };
  
   // Sin sesión iniciada no se muestran las reservas
   if (!isLogged) {
@@ -41,6 +58,14 @@ export default function ReservaScreen() {
           <Text style={styles.text}>Profesor(a): {item.profesor}</Text>
           <Text style={styles.text}>Horario: {item.horario}</Text>
           <Text style={styles.text}>{formatearPrecio(item.precio)}</Text>
+ 
+          <Pressable
+            onPress={() => confirmarEliminar(item)}
+            style={styles.botonEliminar}
+          >
+            <Ionicons name="trash-outline" size={18} color={colors.peligro} />
+            <Text style={styles.textoEliminar}>Eliminar</Text>
+          </Pressable>
         </View>
       )}
     />
@@ -79,5 +104,21 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     color: colors.texto,
     marginBottom: spacing.xs,
+  },
+ 
+  botonEliminar: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "flex-end",
+    gap: spacing.xs,
+    marginTop: spacing.sm,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.md,
+  },
+ 
+  textoEliminar: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: colors.peligro,
   },
 });
