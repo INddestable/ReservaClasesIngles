@@ -1,11 +1,29 @@
 import React, { useState } from 'react'
-import { View, Text,  Pressable,  StyleSheet,  Image,  TextInput,  ScrollView,  FlatList} from "react-native";
+import { View, Text,  Pressable,  StyleSheet,  Image,  TextInput,  ScrollView,  FlatList, Alert} from "react-native";
 import { colors, spacing, radius, typography, sombra } from "../../theme";
+import { useLogin } from "../../context/LoginContext"
 
 export const LoginForm = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    
+    const { login } = useLogin();
+
+    const handleLogin = () => {
+        if (!email.trim()) {
+            Alert.alert('Error', 'El email es obligatorio');
+            return;
+        }
+        if (!email.trim().includes('@')) {
+            Alert.alert('Error', 'El email no es valido');
+            return;
+        }
+        if (!password.trim()) {
+            Alert.alert('Error', 'La password es obligatoria');
+            return;
+        }
+        login(email, password)
+    }
+
     return (
     <View style={{
     }}>
@@ -13,18 +31,27 @@ export const LoginForm = () => {
             Iniciar sesion
         </Text>
         <TextInput
-            placeholder='Email'
+            placeholder='Email *'
             style={style.textInputs}
+            value={email}
+            onChangeText={setEmail}
+            keyboardType='email-address'
+            autoCapitalize='none'
+            autoCorrect={false}
         >
         </TextInput>
         <TextInput
-            placeholder='Password'
+            placeholder='Password *'
             style={style.textInputs}
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={true}
         >
         </TextInput>
         <Pressable
             onPress={() => {
                 //Funcion para Login
+                handleLogin()
           }}
         style={({ pressed }) => ({
             backgroundColor: pressed ? colors.primarioOscuro : colors.primario,

@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react';
+import { Alert } from 'react-native';
 
 //Inicializamos el contexto
 const LoginContext = createContext();
@@ -31,10 +32,19 @@ export function LoginProvider({ children }) {
     */
 
   //funcion para Loguearse
-  const login = (userData) => {
-    setUser(userData);
-    setIsLogged(true);
-  }
+  const login = (email, password) => {
+    if (
+      user &&
+      user.email === email &&
+      user.password === password
+    ) {
+      setUser(registeredUser);
+      setIsLogged(true);
+    }
+    else (
+      Alert.alert('Error',"Email o password incorrectos")
+    )
+  };
 
   //funcion cerrar sesion
   const logout = () => {
