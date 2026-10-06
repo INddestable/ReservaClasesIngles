@@ -14,6 +14,7 @@ export default function DetalleClasesScreen({ route }) {
   const { clase } = route.params;// otra manera de desestructurar objetos
   const { paddingHorizantal, esTablet } = useResponsive();
   const [cupos, setCupos] = useState(clase.cupos);
+  const [horarioElegido, setHorarioElegido] = useState(null);
   const restarCupos = () => {
     if (cupos >= 1) {
       setCupos((cupoRestante) => cupoRestante - 1);
@@ -107,9 +108,27 @@ export default function DetalleClasesScreen({ route }) {
 
           <Text style={estilos.datoValor}>Elige tu horario</Text>
 
-          <Text style={[estilos.horario, estilos.margin]}>
-            {clase.horarios.join(" - ")}
-          </Text>
+          <View style={estilos.horarios}>
+            {clase.horarios.map((h) => {
+              const elegido = h === horarioElegido;
+              return (
+                <Pressable
+                  key={h}
+                  onPress={() => setHorarioElegido(h)}
+                  style={[estilos.horario, elegido && estilos.horarioSeleccionado]}
+                >
+                  <Text
+                    style={[
+                      estilos.horarioTexto,
+                      elegido && estilos.horarioTextoSeleccionado,
+                    ]}
+                  >
+                    {h}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
         </View>
       </ScrollView>
 
