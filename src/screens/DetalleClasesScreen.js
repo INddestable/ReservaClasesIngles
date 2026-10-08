@@ -15,10 +15,15 @@ export default function DetalleClasesScreen({ route }) {
   const insets = useSafeAreaInsets();
   const { clase } = route.params;// otra manera de desestructurar objetos
   const { paddingHorizantal, esTablet } = useResponsive();
-  const [cupos, setCupos] = useState(clase.cupos);
   const [horarioElegido, setHorarioElegido] = useState(null);
   const { isLogged } = useLogin();
-  const { agregarReserva } = useContext(ReservaContext);
+  const { agregarReserva, reservas } = useContext(ReservaContext);
+
+  // Cupos disponibles = cupos de la clase menos las reservas guardadas de esa clase
+  const reservasDeLaClase = reservas.filter((r) =>
+    r.id.startsWith(clase.id + "-"),
+  ).length;
+  const cupos = clase.cupos - reservasDeLaClase;
   const restarCupos = () => {
     // 1. Para reservar es obligatorio haber iniciado sesión
     if (!isLogged) {
@@ -56,7 +61,6 @@ export default function DetalleClasesScreen({ route }) {
       return;
     }
 
-    setCupos((cupoRestante) => cupoRestante - 1);
     Alert.alert(
       "Reservar Clases",
       `Has reservado ${clase.titulo} - ${horarioElegido}`,
